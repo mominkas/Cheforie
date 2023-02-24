@@ -2,13 +2,11 @@ package model;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 // Represents a list containing multiple Recipes.
 public class RecipeList {
-    private ArrayList<Recipe> recipes;
+    private final ArrayList<Recipe> recipes;
 
     // EFFECTS: Constructs a new recipe list.
     public RecipeList() {
@@ -27,7 +25,7 @@ public class RecipeList {
 
     // REQUIRES: non-empty list
     // EFFECTS:generates random recipe corresponding to time of day provided
-    public RecipeList randomRecipeForGivenTime(String timeOfMeal) {
+    public RecipeList filterRecipeListForTime(String timeOfMeal) {
         RecipeList filteredRecipes = new RecipeList();
         if (timeOfMeal.equals("breakfast")) {
             for (Recipe r : recipes) {
@@ -56,11 +54,13 @@ public class RecipeList {
     // REQUIRES: Non-empty list
     // MODIFIES: filtered Recipe List
     // EFFECTS: Picks one random recipe from the given list
-    public Recipe randomRecipeChooser() {
+    public Recipe randomRecipeChooser() throws EmptyRecipeList {
         Random rand = new Random();
+        if (recipes.size() == 0) {
+            throw new EmptyRecipeList();
+        }
         int randomIndex = rand.nextInt(recipes.size());
         return recipes.get(randomIndex);
-
     }
 
 }

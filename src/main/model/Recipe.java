@@ -1,17 +1,17 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 // Represents a recipe having a name, time of day, list of ingredients, calories, amount of carbs, fat, and protein.
 public class Recipe {
     private String name;
     private String timeOfMeal; // breakfast, lunch, dinner, anytime.
-    private ArrayList<Ingredients> ingredient;
-    private int calories;
-    private int carbs;
-    private int fats;
-    private int protein;
+    private final ArrayList<Ingredients> ingredient;
+    private final int calories;
+    private final int carbs;
+    private final int fats;
+    private final int protein;
 
     // EFFECTS: Constructs a new recipe
     public Recipe(String name, String timeOfMeal, ArrayList<Ingredients> ingredient, int calories,
@@ -32,6 +32,10 @@ public class Recipe {
 
     public String getTimeOfMeal() {
         return timeOfMeal;
+    }
+
+    public ArrayList<Ingredients> getIngredient() {
+        return ingredient;
     }
 
     public int getCalories() {

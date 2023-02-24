@@ -3,7 +3,7 @@ package model;
 
 // Represents an Ingredient with its name.
 public class Ingredients {
-    private String name;
+    private final String name;
 
     public Ingredients(String name) {
         this.name = name;
@@ -11,6 +11,10 @@ public class Ingredients {
 
     public String toString() {
         return name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
 
