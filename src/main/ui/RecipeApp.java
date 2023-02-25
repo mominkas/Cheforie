@@ -281,6 +281,7 @@ public class RecipeApp {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: Takes user input and calls corresponding function
     private void fixedDailyMeal() {
         String fixedDailyMeal = "";  // force entry into loop
@@ -388,7 +389,7 @@ public class RecipeApp {
 
     }
 
-    // EFFECTS: Allows the user to view the list of fixed meals.
+    // EFFECTS: Allows the user to view the list of fixed meals and then returns to menu.
     private void viewFixedMealsAndReturnToMenu() {
         int counter = 1;
         if (fixedMealsList.size() == 0) {
@@ -439,6 +440,7 @@ public class RecipeApp {
     }
 
     // REQUIRES: Non-empty parent recipe list with at least one breakfast, lunch, and dinner recipe each.
+    // MODIFIES: this
     // EFFECTS: Generates a randomized meal plan adhering to the calorie limit set by the user.
     private void startRandomMealPlan() {
         float randomMealCalories = -1;  // force entry into loop
@@ -459,6 +461,8 @@ public class RecipeApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Filters the parent recipe list for breakfast recipes, then chooses a random one.
     private void getRandomBreakfast() {
         try {
             breakfast = parentRecipeList.filterRecipeListForTime("breakfast").randomRecipeChooser();
@@ -468,6 +472,8 @@ public class RecipeApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Filters the parent recipe list for lunch recipes, then chooses a random one.
     private void getRandomLunch() {
         try {
             lunch = parentRecipeList.filterRecipeListForTime("lunch").randomRecipeChooser();
@@ -477,6 +483,8 @@ public class RecipeApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Filters the parent recipe list for dinner recipes, then chooses a random one.
     private void getRandomDinner() {
         try {
             dinner = parentRecipeList.filterRecipeListForTime("dinner").randomRecipeChooser();
@@ -486,7 +494,10 @@ public class RecipeApp {
         }
     }
 
-    private int[] randomMealPlan(float cals) {
+    // MODIFIES: this
+    // EFFECTS: Generates a random meal plan and collects the total macros for all of them, macros get passed over to
+    //          the printFinalMacros method.
+    private int[] randomMealPlanMacros(float cals) {
         int totalCalories;
         int totalCarbs;
         int totalFats;
@@ -514,8 +525,10 @@ public class RecipeApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Prints the macros for the generated meal plan and gives prompt to return to main menu.
     private void printFinalMacros(float cals) {
-        int[] finalMealMacros = randomMealPlan(cals);
+        int[] finalMealMacros = randomMealPlanMacros(cals);
         String backToMenu = "";
         System.out.println("\nYour total CALORIES for the day are: " + finalMealMacros[0]);
         System.out.println("\nYour total CARBS for the day are: " + finalMealMacros[1]);

@@ -51,7 +51,6 @@ public class RecipeList {
         return filteredRecipes;
     }
 
-    // REQUIRES: Non-empty list
     // MODIFIES: filtered Recipe List
     // EFFECTS: Picks one random recipe from the given list
     public Recipe randomRecipeChooser() throws EmptyRecipeList {

@@ -72,6 +72,32 @@ public class RecipeListTest {
 
         assertEquals(2, filteredRecipeList.getRecipeList().size());
 
+        filteredRecipeList = testRecipeList.filterRecipeListForTime("");
+
+        assertEquals(0, filteredRecipeList.getRecipeList().size());
+
+    }
+
+    @Test
+    void testRandomRecipeChooser() throws EmptyRecipeList {
+        Recipe randomChosenRecipe;
+        testRecipeList.addRecipe(testRecipe);
+        testRecipeList.addRecipe(testRecipe2);
+        testRecipeList.addRecipe(testRecipe3);
+
+        randomChosenRecipe = testRecipeList.randomRecipeChooser();
+
+        assertTrue(testRecipeList.getRecipeList().contains(randomChosenRecipe));
+
+    }
+
+    @Test  void testRandomRecipeEmptyChooser() throws EmptyRecipeList {
+
+        assertThrows(EmptyRecipeList.class, () -> testRecipeList.randomRecipeChooser());
+
+
+
+
     }
 
 }

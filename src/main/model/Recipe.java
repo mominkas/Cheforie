@@ -13,7 +13,7 @@ public class Recipe {
     private final int fats;
     private final int protein;
 
-    // EFFECTS: Constructs a new recipe
+    // EFFECTS: Constructs a new recipe with all fields.
     public Recipe(String name, String timeOfMeal, ArrayList<Ingredients> ingredient, int calories,
                   int carbs, int fats, int protein) {
         this.name = name;
@@ -62,6 +62,7 @@ public class Recipe {
         this.timeOfMeal = timeOfMeal;
     }
 
+    // Effects: Returns a string with the name, time of meal, ingredients, calories, carbs, fats, protein of a recipe.
     public String toString() {
         return name + " " + timeOfMeal + " Ingredients: "
                 + ingredient + " Calories: " + calories + " Carbs: " + carbs + " Fats: " + fats
