@@ -33,5 +33,9 @@ automates the entire process of choosing what to eat while making sure to target
 - As a *user* I want to set certain items that I want to **eat every day** such as a protein bar or shake.
 - As a *user* I want to be able to see my total macros for **carbs, protein, and fat** per daily meal plan.
 
+- As a *user*, I want to be able to **save my recipe list and fixed meals list** to file (if I so choose)
+- As a *user*, I want to be able to be able to **load my recipe list and fixed meal list** from file (if I so choose)
+
+
 
 

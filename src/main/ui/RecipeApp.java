@@ -84,12 +84,12 @@ public class RecipeApp {
     // MODIFIES: this
     // EFFECTS: Initializes the required recipe list, fixed meal lists, adds recipes, and starts the scanner.
     private void initialize() {
-        ArrayList<Ingredients> ingredientsList = new ArrayList<>();
-        ingredientsList.add(new Ingredients("potato"));
-        Recipe recipe = new Recipe("Test1",
-                "lunch", ingredientsList, 500, 120, 120, 120);
-        Recipe recipe1 = new Recipe("Test2",
-                "lunch", ingredientsList, 800, 120, 120, 120);
+//        ArrayList<Ingredients> ingredientsList = new ArrayList<>();
+//        ingredientsList.add(new Ingredients("potato"));
+//        Recipe recipe = new Recipe("Test1",
+//                "lunch", ingredientsList, 500, 120, 120, 120);
+//        Recipe recipe1 = new Recipe("Test2",
+//                "lunch", ingredientsList, 800, 120, 120, 120);
 //        Recipe recipe2 = new Recipe("Test3",
 //                "lunch", ingredientsList, 1000, 120, 120, 120);
 //        Recipe recipe3 = new Recipe("Test4",
@@ -109,8 +109,8 @@ public class RecipeApp {
 
         fixedMealsList = new ArrayList<>();
         parentRecipeList = new RecipeList();
-        parentRecipeList.addRecipe(recipe);
-        parentRecipeList.addRecipe(recipe1);
+//        parentRecipeList.addRecipe(recipe);
+//        parentRecipeList.addRecipe(recipe1);
 //        parentRecipeList.addRecipe(recipe2);
 //        parentRecipeList.addRecipe(recipe3);
 //        parentRecipeList.addRecipe(recipe4);
@@ -383,8 +383,6 @@ public class RecipeApp {
                 System.out.println(counter + ". " + recipe);
                 counter++;
             }
-
-
         }
 
     }
