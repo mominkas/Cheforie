@@ -4,7 +4,11 @@ import model.EmptyRecipeList;
 import model.Ingredients;
 import model.Recipe;
 import model.RecipeList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,7 +16,9 @@ import java.util.Scanner;
 public class RecipeApp {
     private RecipeList parentRecipeList;
     private Scanner input;
-    private ArrayList<Recipe> fixedMealsList;
+    private static final String JSON_STORE = "./data/recipelist.json";
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
     Recipe breakfast;
     Recipe lunch;
     Recipe dinner;
@@ -20,7 +26,10 @@ public class RecipeApp {
 
     //EFFECTS: Runs Cheforie.
     public RecipeApp() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runRecipe();
+
     }
 
     // MODIFIES: this
@@ -36,7 +45,7 @@ public class RecipeApp {
             userCommand = input.next();
             userCommand = userCommand.toLowerCase();
 
-            if (userCommand.equals("s")) {
+            if (userCommand.equals("q")) {
                 keepRunning = false;
             } else {
                 useCommand(userCommand);
@@ -62,6 +71,12 @@ public class RecipeApp {
             case "f":
                 startRandomMealPlan();
                 break;
+            case "s":
+                saveRecipeList();
+                break;
+            case "l":
+                loadRecipeList();
+                break;
             default:
                 System.out.println("Invalid Input :(");
                 break;
@@ -77,7 +92,10 @@ public class RecipeApp {
         System.out.println("\t H -> Fixed daily meals");
         System.out.println("\t E -> View all recipes");
         System.out.println("\t F -> Generate a randomized meal plan");
-        System.out.println("\t S -> Exit");
+        System.out.println("\t S -> Save recipes to file");
+        System.out.println("\t L -> Load recipes from file");
+        System.out.println("\t Q -> Exit");
+
 
     }
 
@@ -106,8 +124,6 @@ public class RecipeApp {
 //                "dinner", ingredientsList, 900, 120, 120, 120);
 //        Recipe recipe9 = new Recipe("Test10",
 //                "breakfast", ingredientsList, 150, 120, 120, 120);
-
-        fixedMealsList = new ArrayList<>();
         parentRecipeList = new RecipeList();
 //        parentRecipeList.addRecipe(recipe);
 //        parentRecipeList.addRecipe(recipe1);
@@ -335,7 +351,7 @@ public class RecipeApp {
 
         }
         Recipe changeToFixedMeal = parentRecipeList.getRecipeList().remove(fixedMeal - 1);
-        fixedMealsList.add(changeToFixedMeal);
+        parentRecipeList.getFixedMeals().add(changeToFixedMeal);
         System.out.println("Your recipe has been removed from the list and added to your fixed meals!");
         fixedDailyMeal();
 
@@ -353,7 +369,7 @@ public class RecipeApp {
                 try {
                     fixedMeal = Integer.parseInt(inputString);
                     int listBounds = Integer.parseInt(inputString);
-                    if (listBounds <= 0 || listBounds > fixedMealsList.size()) {
+                    if (listBounds <= 0 || listBounds > parentRecipeList.getFixedMeals().size()) {
                         fixedMeal = -1;
                         System.out.println("Invalid input. Please enter a valid number.");
                     }
@@ -364,7 +380,7 @@ public class RecipeApp {
             }
 
         }
-        Recipe changeToFixedMeal = fixedMealsList.remove(fixedMeal - 1);
+        Recipe changeToFixedMeal = parentRecipeList.getFixedMeals().remove(fixedMeal - 1);
         parentRecipeList.getRecipeList().add(changeToFixedMeal);
         System.out.println("Your recipe has been removed and added back to your recipe list!");
         fixedDailyMeal();
@@ -389,11 +405,12 @@ public class RecipeApp {
 
     // EFFECTS: Allows the user to view the list of fixed meals and then returns to menu.
     private void viewFixedMealsAndReturnToMenu() {
+        ArrayList<Recipe> printList = parentRecipeList.getFixedMeals();
         int counter = 1;
-        if (fixedMealsList.size() == 0) {
+        if (printList.size() == 0) {
             System.out.println("Fixed meals list is empty :(");
         } else {
-            for (Recipe recipe : fixedMealsList) {
+            for (Recipe recipe : printList) {
                 System.out.println(counter + ". " + recipe);
                 counter++;
             }
@@ -406,11 +423,12 @@ public class RecipeApp {
 
     // EFFECTS: Allows the user to view the list of fixed meals.
     private void viewFixedMealsForRemoval() {
+        ArrayList<Recipe> printList = parentRecipeList.getFixedMeals();
         int counter = 1;
-        if (fixedMealsList.size() == 0) {
+        if (printList.size() == 0) {
             System.out.println("Fixed meals list is empty :(");
         } else {
-            for (Recipe recipe : fixedMealsList) {
+            for (Recipe recipe : printList) {
                 System.out.println(counter + ". " + recipe);
                 counter++;
             }
@@ -426,7 +444,7 @@ public class RecipeApp {
         int fixedMealProtein = 0;
         int fixedMealFats = 0;
         int fixedMealCarbs = 0;
-        for (Recipe recipe : fixedMealsList) {
+        for (Recipe recipe : parentRecipeList.getFixedMeals()) {
             fixedMealCals = fixedMealCals + recipe.getCalories();
             fixedMealProtein = fixedMealProtein + recipe.getProtein();
             fixedMealFats = fixedMealFats + recipe.getFats();
@@ -514,10 +532,10 @@ public class RecipeApp {
         System.out.println("\nToday's BREAKFAST is: " + breakfast);
         System.out.println("\nToday's LUNCH is: " + lunch);
         System.out.println("\nToday's DINNER is: " + dinner);
-        if (fixedMealsList.isEmpty()) {
+        if (parentRecipeList.getFixedMeals().isEmpty()) {
             System.out.println("\nYou have no fixed meals for today.");
         } else {
-            System.out.println("\nYour fixed meals are: " + fixedMealsList);
+            System.out.println("\nYour fixed meals are: " + parentRecipeList.getFixedMeals());
         }
         return new int[]{totalCalories, totalCarbs, totalFats, totalProtein};
 
@@ -541,4 +559,28 @@ public class RecipeApp {
 
         }
     }
+
+    // EFFECTS: saves the recipes to the specified file.
+    private void saveRecipeList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(parentRecipeList);
+            jsonWriter.close();
+            System.out.println("Saved your recipe list and fixed meal list to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadRecipeList() {
+        try {
+            parentRecipeList = jsonReader.read();
+            System.out.println("Loaded your recipe list and fixed meal list from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
 }

@@ -1,8 +1,11 @@
 package model;
 
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an Ingredient with its name.
-public class Ingredients {
+public class Ingredients implements Writable {
     private final String name;
 
     // EFFECTS: Creates an Ingredient with a name.
@@ -17,6 +20,14 @@ public class Ingredients {
 
     public String getName() {
         return this.name;
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        return json;
     }
 }
 

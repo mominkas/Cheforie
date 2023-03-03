@@ -1,0 +1,28 @@
+{
+    "FixedMeaList": [{
+        "ingredient": [
+            {"name": "be"},
+            {"name": "be"},
+            {"name": "be"}
+        ],
+        "carbs": 234,
+        "fats": 324,
+        "protein": 234,
+        "name": "fixedlist",
+        "timeOfMeal": "dinner",
+        "calories": 2314
+    }],
+    "RecipeList": [{
+        "ingredient": [
+            {"name": "we"},
+            {"name": "we"},
+            {"name": "we"}
+        ],
+        "carbs": 324,
+        "fats": 234,
+        "protein": 324,
+        "name": "recipelist",
+        "timeOfMeal": "lunch",
+        "calories": 324
+    }]
+}

@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 
 // Represents a recipe having a name, time of day, list of ingredients, calories, amount of carbs, fat, and protein.
-public class Recipe {
+public class Recipe implements Writable {
     private String name;
     private String timeOfMeal; // breakfast, lunch, dinner, anytime.
     private final ArrayList<Ingredients> ingredient;
@@ -69,6 +73,29 @@ public class Recipe {
                 + " Protein: " + protein;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("timeOfMeal", timeOfMeal);
+        json.put("ingredient", ingredientsToJson());
+        json.put("calories", calories);
+        json.put("carbs", carbs);
+        json.put("fats", fats);
+        json.put("protein", protein);
+        return json;
+    }
+
+    // EFFECTS: returns ingredients in the ingredient list field as a JSON array
+    private JSONArray ingredientsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Ingredients ing : ingredient) {
+            jsonArray.put(ing.toJson());
+        }
+
+        return jsonArray;
+    }
 }
 
 

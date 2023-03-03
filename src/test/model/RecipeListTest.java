@@ -39,6 +39,15 @@ public class RecipeListTest {
     }
 
     @Test
+    void testAddFixedMealRecipe() {
+        assertEquals(0, testRecipeList.getRecipeList().size());
+
+        testRecipeList.addRecipeToFixedMeal(testRecipe);
+
+        assertEquals(1, testRecipeList.getFixedMeals().size());
+    }
+
+    @Test
     void testAddMultipleRecipes() {
         assertEquals(0, testRecipeList.getRecipeList().size());
 

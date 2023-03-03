@@ -1,16 +1,22 @@
 package model;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-// Represents a list containing multiple Recipes.
-public class RecipeList {
+// Represents a list containing multiple Recipes and a fixedMealList
+public class RecipeList implements Writable {
     private final ArrayList<Recipe> recipes;
+    private final ArrayList<Recipe> fixedMeals;
 
     // EFFECTS: Constructs a new recipe list.
     public RecipeList() {
         recipes = new ArrayList<>();
+        fixedMeals = new ArrayList<>();
     }
 
     // MODIFIES: this
@@ -19,8 +25,18 @@ public class RecipeList {
         recipes.add(recipe);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Adds a recipe to fixed meal list.
+    public void addRecipeToFixedMeal(Recipe recipe) {
+        fixedMeals.add(recipe);
+    }
+
     public ArrayList<Recipe> getRecipeList() {
         return recipes;
+    }
+
+    public ArrayList<Recipe> getFixedMeals() {
+        return fixedMeals;
     }
 
     // REQUIRES: non-empty list
@@ -62,5 +78,34 @@ public class RecipeList {
         return recipes.get(randomIndex);
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("RecipeList", recipesToJson());
+        json.put("FixedMeaList", fixedMealsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns recipes in this RecipeList as a JSON array
+    private JSONArray recipesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Recipe recipe : recipes) {
+            jsonArray.put(recipe.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns fixedMeals in this RecipeList as a JSON array
+    private JSONArray fixedMealsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Recipe recipe : fixedMeals) {
+            jsonArray.put(recipe.toJson());
+        }
+
+        return jsonArray;
+    }
 }
 
