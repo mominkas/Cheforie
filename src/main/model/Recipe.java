@@ -68,9 +68,9 @@ public class Recipe implements Writable {
 
     // Effects: Returns a string with the name, time of meal, ingredients, calories, carbs, fats, protein of a recipe.
     public String toString() {
-        return name + " " + timeOfMeal + " Ingredients: "
-                + ingredient + " Calories: " + calories + " Carbs: " + carbs + " Fats: " + fats
-                + " Protein: " + protein;
+        return "Name: " + name + "," + " Time of meal: " + timeOfMeal + "," + " Ingredients: "
+                + ingredient + "," + " Calories: " + calories + "," + " Carbs: " + carbs + "," + " Fats: " + fats
+                + "," + " Protein: " + protein;
     }
 
     @Override

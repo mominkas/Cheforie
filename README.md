@@ -36,6 +36,17 @@ automates the entire process of choosing what to eat while making sure to target
 - As a *user*, I want to be able to **save my recipe list and fixed meals list** to file (if I so choose)
 - As a *user*, I want to be able to be able to **load my recipe list and fixed meal list** from file (if I so choose)
 
+# Instructions for Grader
+
+- You can generate the first required action related to adding Xs to a Y by clicking the add Recipe button and following
+the provided instructions. To view if a recipe has been added, click on view recipes.
+- You can generate the second required action related to adding Xs to a Y by going to view recipes and clicking on
+filter on the bottom right. Type in either breakfast, lunch, or dinner, to filter your recipes accordingly and get a new 
+filtered list that you can view now.
+- You can locate my visual component by looking at the top left, this is my logo
+- You can save the state of my application by clicking save on the main menu.
+- You can reload the state of my application by clicking load from the main menu.
+
 
 
 
