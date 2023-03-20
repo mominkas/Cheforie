@@ -32,7 +32,8 @@ public class CheforieGui extends JFrame implements ActionListener {
     JButton saveButton;
     JButton loadButton;
 
-
+    //MODIFIES: this
+    //EFFECTS: Starts the gui, makes instantiations and calls init.
     CheforieGui() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -42,6 +43,8 @@ public class CheforieGui extends JFrame implements ActionListener {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up the frame and panels, adds all the buttons for the main menu
     public void init() {
         setTitle("Cheforie");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +69,8 @@ public class CheforieGui extends JFrame implements ActionListener {
         pack();
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the JLabel used to position the cheforie logo with
     private JLabel createLogoLabel() {
         JLabel label = new JLabel();
         ImageIcon logo = new ImageIcon("data/Cheforie.png");
@@ -74,6 +79,8 @@ public class CheforieGui extends JFrame implements ActionListener {
         return label;
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the first Jpanel that has buttons for the main menu
     private JPanel createButtonPanel() {
         buttonPanel = new JPanel(new GridLayout(0, 1));
         addRecipeButton = new JButton("Add a recipe");
@@ -94,12 +101,15 @@ public class CheforieGui extends JFrame implements ActionListener {
         return buttonPanel;
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the label and cardPanel corresponding to main menu panel to the frame
     private void addComponents(JLabel label, JPanel cardPanel) {
         add(label, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
     }
 
 
+    //EFFECTS: handles user input and calls appropriate related function.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addRecipeButton)) {
@@ -124,6 +134,8 @@ public class CheforieGui extends JFrame implements ActionListener {
     }
 
 
+    //MODIFIES: this
+    //EFFECTS: makes new panel that allows user to input a new recipe to the recipe list.
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void addRecipe() {
         JPanel inputPanel = new JPanel(new GridLayout(0, 1));
@@ -191,6 +203,8 @@ public class CheforieGui extends JFrame implements ActionListener {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: new panel in which users can view all their recipes, also allows users to filter recipe list.
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void viewRecipes(RecipeList recList) {
         JPanel viewPanel = new JPanel(new BorderLayout());
@@ -238,12 +252,17 @@ public class CheforieGui extends JFrame implements ActionListener {
         pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads the fixed meal menu to allow users to choose fixed meals and related functionality.
     private void fixedMealsMenu() {
     }
 
+    // MODIFIES: this
+    // EFFECTS: the ultimate randomizer that uses my proprietary recipe randomizing method to make a meal plan
     private void mealPlanGenerator() {
     }
 
+    // EFFECTS: saves the recipes to the specified file.
     private void save() {
         try {
             jsonWriter.open();
@@ -255,6 +274,8 @@ public class CheforieGui extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
     private void load() {
         try {
             parentRecipeList = jsonReader.read();
