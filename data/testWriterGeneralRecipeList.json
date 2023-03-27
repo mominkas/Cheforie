@@ -1,0 +1,31 @@
+{
+    "FixedMeaList": [{
+        "ingredient": [{"name": "potato"}],
+        "carbs": 20,
+        "fats": 30,
+        "protein": 40,
+        "name": "test",
+        "timeOfMeal": "lunch",
+        "calories": 10
+    }],
+    "RecipeList": [
+        {
+            "ingredient": [{"name": "potato"}],
+            "carbs": 20,
+            "fats": 30,
+            "protein": 40,
+            "name": "test",
+            "timeOfMeal": "lunch",
+            "calories": 10
+        },
+        {
+            "ingredient": [{"name": "potato"}],
+            "carbs": 20,
+            "fats": 30,
+            "protein": 40,
+            "name": "test",
+            "timeOfMeal": "lunch",
+            "calories": 10
+        }
+    ]
+}
