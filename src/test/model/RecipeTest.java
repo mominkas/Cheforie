@@ -39,7 +39,8 @@ class RecipeTest {
 
     @Test
     void testToString() {
-        assertEquals("test lunch Ingredients: [potato] Calories: 10 Carbs: 20 Fats: 30 Protein: 40",
+        assertEquals("Name: test, Time of meal: lunch, Ingredients: [potato], Calories: 10, Carbs: 20," +
+                        " Fats: 30, Protein: 40",
                 testRecipe.toString());
     }
 }
