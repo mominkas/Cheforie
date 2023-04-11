@@ -23,12 +23,14 @@ public class RecipeList implements Writable {
     // EFFECTS: Adds a recipe to the recipe list.
     public void addRecipe(Recipe recipe) {
         recipes.add(recipe);
+        EventLog.getInstance().logEvent(new Event("Added " + recipe.getName() + " to your recipe list!"));
     }
 
     // MODIFIES: this
     // EFFECTS: Adds a recipe to fixed meal list.
     public void addRecipeToFixedMeal(Recipe recipe) {
         fixedMeals.add(recipe);
+        EventLog.getInstance().logEvent(new Event("Added " + recipe.getName() + " to your fixed meals list!"));
     }
 
     public ArrayList<Recipe> getRecipeList() {
@@ -64,7 +66,9 @@ public class RecipeList implements Writable {
                 }
             }
         }
+        EventLog.getInstance().logEvent(new Event("Filtered for " + timeOfMeal + " recipes!"));
         return filteredRecipes;
+
     }
 
     // MODIFIES: filtered Recipe List
@@ -76,6 +80,13 @@ public class RecipeList implements Writable {
         }
         int randomIndex = rand.nextInt(recipes.size());
         return recipes.get(randomIndex);
+    }
+
+    public void printRecipeEventLog() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
+            System.out.println();
+        }
     }
 
     @Override

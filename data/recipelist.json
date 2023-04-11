@@ -3,29 +3,28 @@
     "RecipeList": [
         {
             "ingredient": [
-                {"name": "ewqr"},
-                {"name": "erwt"},
-                {"name": "erwt"}
+                {"name": "reqfg"},
+                {"name": "regf"},
+                {"name": "erg"}
             ],
-            "carbs": 432,
-            "fats": 342,
-            "protein": 324,
-            "name": "reft",
+            "carbs": 324,
+            "fats": 324,
+            "protein": 234,
+            "name": "wiuerht",
             "timeOfMeal": "lunch",
-            "calories": 324
+            "calories": 234
         },
         {
             "ingredient": [
-                {"name": "wefr"},
-                {"name": "ewr"},
-                {"name": "ewr"}
+                {"name": "ewrf"},
+                {"name": "erwft"}
             ],
             "carbs": 324,
             "fats": 324,
             "protein": 324,
-            "name": "erwfg",
+            "name": "erlgn",
             "timeOfMeal": "dinner",
-            "calories": 213
+            "calories": 324
         }
     ]
 }

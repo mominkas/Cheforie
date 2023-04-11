@@ -47,6 +47,38 @@ filtered list that you can view now.
 - You can save the state of my application by clicking save on the main menu.
 - You can reload the state of my application by clicking load from the main menu.
 
+# Phase 4: Task 2
+
+Sample of Events for:
+
+1. Add recipe named test1
+2. Add recipe named test2
+3. Filter for lunch
+4. Filter for dinner
+5. Filter for breakfast
+6. Add recipe named test3
+
+Results: 
+
+Tue Apr 11 05:09:54 PDT 2023
+Added test1 to your recipe list!
+
+Tue Apr 11 05:10:14 PDT 2023
+Added test2 to your recipe list!
+
+Tue Apr 11 05:10:22 PDT 2023
+Filtered for lunch recipes!
+
+Tue Apr 11 05:10:25 PDT 2023
+Filtered for dinner recipes!
+
+Tue Apr 11 05:10:30 PDT 2023
+Filtered for breakfast recipes!
+
+Tue Apr 11 05:10:46 PDT 2023
+Added test3 to your recipe list!
+
+
 
 
 

@@ -1,8 +1,6 @@
 package ui;
 
-import model.Ingredients;
-import model.Recipe;
-import model.RecipeList;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -10,10 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// Cheforie: Recipe randomizer application gui
 public class CheforieGui extends JFrame implements ActionListener {
     private RecipeList parentRecipeList;
     private static final String JSON_STORE = "./data/recipelist.json";
@@ -48,6 +49,16 @@ public class CheforieGui extends JFrame implements ActionListener {
     public void init() {
         setTitle("Cheforie");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Add the WindowListener to the JFrame
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                parentRecipeList.printRecipeEventLog();
+            }
+        });
+
+
         getContentPane().setBackground(new Color(233, 220, 211));
         parentRecipeList = new RecipeList();
 
@@ -173,6 +184,8 @@ public class CheforieGui extends JFrame implements ActionListener {
         inputPanel.add(proteinLabel);
         inputPanel.add(proteinField);
         inputPanel.add(saveButton);
+
+
 
         cardPanel.add(inputPanel, "input");
         cardLayout.show(cardPanel, "input");
