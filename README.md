@@ -78,7 +78,34 @@ Filtered for breakfast recipes!
 Tue Apr 11 05:10:46 PDT 2023
 Added test3 to your recipe list!
 
+# Phase 4: Task 3
 
+The current structure of my UMl class diagram seems really intuitive. My gui class has fields for the JsonWriter,
+JsonReader, RecipeList and Recipe classes. There is only one instance of the RecipeList class that the gui class calls,
+which allows it to have two lists of recipes through this class, one as the main list and one as a fixed recipe list.
+There are three instances for the Recipe class in the gui for the separate meal times breakfast, lunch, dinner.
+The relation between the RecipeList class and the Recipe class is an aggregation as a Recipe is a core part of the 
+RecipeList class. Similarly, the relation between Recipe and Ingredients is also an aggregation since ingredients are 
+a part of a recipe. The RecipeList, Recipe, and Ingredients class implement the Writable interface through which they 
+each have their own implementation of the tojson method which helps in converting an object to a JSONOBJECT.
+
+During the course of my project, I have already done some refactoring. The main refactoring I did was to add an extra
+ArrayList for fixed meals in the RecipeList class. Initially, it only had a single list of recipes, and I was making a
+new RecipeList object for the fixed meals when I had to add items from the main list to the fixed meals list. I ended up
+adding another ArrayList of Recipes as a field to the class which now acts as a fixed meals list and there is no need
+to create a new object for the fixed meals. It is also much easier to move recipes between the fixed meals and the main
+recipe lists and everything is housed in a single object. 
+
+Some refactoring I wish to do is with the Ingredients class. Currently, the Ingredients class only makes an ingredient
+that has a String field for it's name and nothing else. I want to add fields for the macros for the ingredient as well. 
+Then, I will make a similar structure to my RecipeList and Recipe classes. I will make a new class called
+IngredientList. This class will have an aggregation with the Ingredients class and will have a field that stores a
+collection of Ingredients. Then, instead of my Recipe class having an aggregation with a collection of Ingredients as it
+currently does, it would effectively only have a regular association with the IngredientList class. This will allow each
+ingredient to have its own macros and allow more functionality in the Recipe class where the macros will now be the 
+sum of the macros for each ingredient present in the list. Additionally, I believe that the current association 
+between by gui class and Recipe class could also work as a dependency since those 3 fields are only used to make a
+new Recipe that is eventually added to the RecipeList class. 
 
 
 
