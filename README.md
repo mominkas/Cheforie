@@ -36,7 +36,7 @@ automates the entire process of choosing what to eat while making sure to target
 - As a *user*, I want to be able to **save my recipe list and fixed meals list** to file (if I so choose)
 - As a *user*, I want to be able to be able to **load my recipe list and fixed meal list** from file (if I so choose)
 
-# Instructions for Grader
+# Instructions for User
 
 - You can generate the first required action related to adding Xs to a Y by clicking the add Recipe button and following
 the provided instructions. To view if a recipe has been added, click on view recipes.
@@ -47,38 +47,8 @@ filtered list that you can view now.
 - You can save the state of my application by clicking save on the main menu.
 - You can reload the state of my application by clicking load from the main menu.
 
-# Phase 4: Task 2
 
-Sample of Events for:
-
-1. Add recipe named test1
-2. Add recipe named test2
-3. Filter for lunch
-4. Filter for dinner
-5. Filter for breakfast
-6. Add recipe named test3
-
-Results: 
-
-Tue Apr 11 05:09:54 PDT 2023
-Added test1 to your recipe list!
-
-Tue Apr 11 05:10:14 PDT 2023
-Added test2 to your recipe list!
-
-Tue Apr 11 05:10:22 PDT 2023
-Filtered for lunch recipes!
-
-Tue Apr 11 05:10:25 PDT 2023
-Filtered for dinner recipes!
-
-Tue Apr 11 05:10:30 PDT 2023
-Filtered for breakfast recipes!
-
-Tue Apr 11 05:10:46 PDT 2023
-Added test3 to your recipe list!
-
-# Phase 4: Task 3
+# Potential Refactoring
 
 The current structure of my UMl class diagram seems really intuitive. My gui class has fields for the JsonWriter,
 JsonReader, RecipeList and Recipe classes. There is only one instance of the RecipeList class that the gui class calls,
