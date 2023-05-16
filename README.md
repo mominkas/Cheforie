@@ -1,5 +1,11 @@
 # Personal Project: *Cheforie*
 
+## Disclaimer
+
+Currently, the full functionality of the application can be accessed via the console by running the main class with new RecipeApp();
+For the ui, current functionality includes adding, saving/loading, filtering and viewing recipes. I am currently working on adding full 
+functionality to the ui as well!
+
 ## An app that picks your meals for you.
 
 This purpose of this application is to generate a random meal plan based on the recipes provided by the user. The
